@@ -21,7 +21,10 @@ async def on_message(message):
     if message.content.startswith('$disable'):
 
         if message.guild.name == "Deverman but its a server":  
-            await message.guild.get_role(740031880610709525).edit(connect = False)
+            perms = discord.Permissions()
+            perms.update(connect = False)
+
+            await message.guild.get_role(740031880610709525).edit(perms)
             await message.channel.send('Channels Disabled.')
 
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.VL49KRzuceeU_-j1uuYK-HZNFWo')
