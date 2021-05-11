@@ -15,13 +15,13 @@ async def on_message(message):
     if message.content.startswith('$enable'):
 
         if message.guild.name == "Deverman but its a server":
-            get(guild.roles, 740031880610709525).Permissions = discord.Permissions(connect = False)
+            get(message.guild.roles, 740031880610709525).Permissions = discord.Permissions(connect = True)
             await message.channel.send('Channels Enabled.')
 
     if message.content.startswith('$disable'):
 
         if message.guild.name == "Deverman but its a server":  
-            get(guild.roles, 740031880610709525).Permissions = discord.Permissions(connect = False)
+            get(message.guild.roles, 740031880610709525).Permissions = discord.Permissions(connect = False)
             await message.channel.send('Channels Disabled.')
 
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.VL49KRzuceeU_-j1uuYK-HZNFWo')
