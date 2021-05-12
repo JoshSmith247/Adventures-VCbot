@@ -13,22 +13,24 @@ async def on_message(message):
 
     if message.content.startswith('$enable'):
 
-        if message.guild.name == "Deverman but its a server":
+        if message.guild.name == "AiC Minecraft Voice Channels & Hub":
             perms = discord.Permissions()
             perms.update(connect = True)
 
             await message.guild.get_role(740031880610709525).edit(permissions=perms, reason=None)
             await message.channel.send('Channels Enabled.')
-            return
+            
+            print('Channels Disabled.')
 
     if message.content.startswith('$disable'):
 
-        if message.guild.name == "Deverman but its a server":  
+        if message.guild.name == "AiC Minecraft Voice Channels & Hub":
             perms = discord.Permissions()
             perms.update(connect = False)
 
             await message.guild.get_role(740031880610709525).edit(permissions=perms, reason=None)
             await message.channel.send('Channels Disabled.')
-            return
+
+            print('Channels Disabled.')
 
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.1CG3BOzkwO-dexoB2lC0QZk1PmI')
