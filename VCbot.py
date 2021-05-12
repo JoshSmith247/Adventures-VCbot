@@ -19,6 +19,7 @@ async def on_message(message):
 
             await message.guild.get_role(740031880610709525).edit(permissions=perms, reason=None)
             await message.channel.send('Channels Enabled.')
+            return
 
     if message.content.startswith('$disable'):
 
@@ -28,5 +29,6 @@ async def on_message(message):
 
             await message.guild.get_role(740031880610709525).edit(permissions=perms, reason=None)
             await message.channel.send('Channels Disabled.')
+            return
 
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.VL49KRzuceeU_-j1uuYK-HZNFWo')
