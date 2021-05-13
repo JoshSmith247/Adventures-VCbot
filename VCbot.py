@@ -20,7 +20,8 @@ async def on_message(message):
             await message.guild.get_role(746811071955730562).edit(permissions=perms, reason=None)
             await message.channel.send('Channels Enabled.')
             
-            print('Channels Disabled.')
+            print('Channels Enabled.')
+            await bot.change_presence(activity=discord.Game(name="The Server is OPEN"))
 
     if message.content.startswith('$disable'):
 
@@ -32,5 +33,13 @@ async def on_message(message):
             await message.channel.send('Channels Disabled.')
 
             print('Channels Disabled.')
+            await bot.change_presence(activity=discord.Game(name="The Server is CLOSED"))
+
+    if message.content.startswith('$help'):
+        await message.delete(message)
+        message.author.send('Commands:')
+        message.author.send('$help    - Sends pm of all current commands')
+        message.author.send('$enable  - Enables campers to connect to VCs')
+        message.author.send('$disable - Blocks campers from connect to VCs')
 
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.1CG3BOzkwO-dexoB2lC0QZk1PmI')
