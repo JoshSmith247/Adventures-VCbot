@@ -42,4 +42,10 @@ async def on_message(message):
         await message.author.send('$enable  - Enables campers to connect to VCs')
         await message.author.send('$disable - Blocks campers from connect to VCs')
 
+    if message.content.startswith('$pack'):
+        embed = discord.Embed(title='Resource Pack v. 3.4', url='https://github.com/JoshSmith247/RelicBuild-Bukkit-Plugin/releases/download/3.4/AIC_mc_texture_pack_V3.4.zip', description='This is an embed that will show how to build an embed and the different components', color=discord.Color.blue())
+        embed.set_thumbnail(url='https://adventuresincardboard.com/onlinegameboard/')
+        embed.set_footer('Add .zip to .minecraft/resourcepacks folder for installation and select in game menu.')
+        await message.author.send(embed=embed)
+
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.1CG3BOzkwO-dexoB2lC0QZk1PmI')
