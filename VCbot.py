@@ -21,7 +21,7 @@ async def on_message(message):
             await message.channel.send('Channels Enabled.')
             
             print('Channels Enabled.')
-            await bot.change_presence(activity=discord.Game(name="The Server is OPEN"))
+            await client.change_presence(activity=discord.Game(name="The Server is OPEN"))
 
     if message.content.startswith('$disable'):
 
@@ -33,10 +33,10 @@ async def on_message(message):
             await message.channel.send('Channels Disabled.')
 
             print('Channels Disabled.')
-            await bot.change_presence(activity=discord.Game(name="The Server is CLOSED"))
+            await client.change_presence(activity=discord.Game(name="The Server is CLOSED"))
 
     if message.content.startswith('$help'):
-        await message.delete(message)
+        await message.delete()
         message.author.send('Commands:')
         message.author.send('$help    - Sends pm of all current commands')
         message.author.send('$enable  - Enables campers to connect to VCs')
