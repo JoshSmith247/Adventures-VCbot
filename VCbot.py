@@ -37,9 +37,9 @@ async def on_message(message):
 
     if message.content.startswith('$help'):
         await message.delete()
-        message.author.send('Commands:')
-        message.author.send('$help    - Sends pm of all current commands')
-        message.author.send('$enable  - Enables campers to connect to VCs')
-        message.author.send('$disable - Blocks campers from connect to VCs')
+        await message.author.send('Commands:')
+        await message.author.send('$help    - Sends pm of all current commands')
+        await message.author.send('$enable  - Enables campers to connect to VCs')
+        await message.author.send('$disable - Blocks campers from connect to VCs')
 
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.1CG3BOzkwO-dexoB2lC0QZk1PmI')
