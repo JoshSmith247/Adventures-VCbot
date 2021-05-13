@@ -43,8 +43,10 @@ async def on_message(message):
         await message.author.send('$disable - Blocks campers from connect to VCs')
 
     if message.content.startswith('$pack'):
-        embed = discord.Embed(title='Resource Pack v. 3.4', url='https://github.com/JoshSmith247/RelicBuild-Bukkit-Plugin/releases/download/3.4/AIC_mc_texture_pack_V3.4.zip', description='This is an embed that will show how to build an embed and the different components', color=discord.Color.blue())
+        embed = discord.Embed(title='AiC Server Resource Pack', url='https://github.com/JoshSmith247/RelicBuild-Bukkit-Plugin/releases/download/3.4/AIC_mc_texture_pack_V3.4.zip', description='This is an embed that will show how to build an embed and the different components', color=discord.Color.blue())
         embed.set_thumbnail(url='https://adventuresincardboard.com/wp-content/uploads/bb-plugin/cache/lastmonsterlivekid-scaled-circle.jpg')
+        embed.add_field(name="v. 3.4", value="[Link](https://github.com/JoshSmith247/RelicBuild-Bukkit-Plugin/releases/download/3.4/AIC_mc_texture_pack_V3.4.zip)", inline=True)
+        embed.add_field(name="v. 3.3", value="[Link](https://github.com/JoshSmith247/RelicBuild-Bukkit-Plugin/releases/download/3.3/AIC_mc_texture_pack_V3.3.zip)", inline=True)
         embed.set_footer(text='Add .zip to .minecraft/resourcepacks folder for installation and select in game menu.')
         await message.author.send(embed=embed)
 
