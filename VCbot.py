@@ -17,7 +17,7 @@ async def on_message(message):
             perms = discord.Permissions()
             perms.update(connect = True)
 
-            await message.guild.get_role(740031880610709525).edit(permissions=perms, reason=None)
+            await message.guild.get_role(746811071955730562).edit(permissions=perms, reason=None)
             await message.channel.send('Channels Enabled.')
             
             print('Channels Disabled.')
@@ -28,7 +28,7 @@ async def on_message(message):
             perms = discord.Permissions()
             perms.update(connect = False)
 
-            await message.guild.get_role(740031880610709525).edit(permissions=perms, reason=None)
+            await message.guild.get_role(746811071955730562).edit(permissions=perms, reason=None)
             await message.channel.send('Channels Disabled.')
 
             print('Channels Disabled.')
