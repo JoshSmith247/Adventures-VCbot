@@ -1,6 +1,8 @@
 import discord
+from mcstatus import MinecraftServer
 
 client = discord.Client()
+server = MinecraftServer.lookup("aicrealm.mcpro.co")
 
 @client.event
 async def on_ready():
@@ -21,7 +23,7 @@ async def on_message(message):
             await message.channel.send('Channels Enabled.')
             
             print('Channels Enabled.')
-            await client.change_presence(activity=discord.Game(name="The Server is OPEN"))
+            await client.change_presence(activity=discord.Game(name="The Server is OPEN ("))
 
     if message.content.startswith('$disable'):
 
