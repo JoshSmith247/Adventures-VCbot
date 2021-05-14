@@ -2,7 +2,7 @@ import discord
 from mcstatus import MinecraftServer
 
 client = discord.Client()
-server = MinecraftServer.lookup("aicrealm.mcpro.co")
+server = MinecraftServer.lookup("192.210.236.66:10156")
 
 status = server.status()
 latency = server.ping()
