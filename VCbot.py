@@ -4,6 +4,10 @@ from mcstatus import MinecraftServer
 client = discord.Client()
 server = MinecraftServer.lookup("aicrealm.mcpro.co")
 
+status = server.status()
+latency = server.ping()
+print("The server replied in {0} ms".format(latency))
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
