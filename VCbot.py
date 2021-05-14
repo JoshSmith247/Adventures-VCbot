@@ -11,7 +11,7 @@ ArenasServer1status = ArenasServer1.status()
 CrSrServer1status = CrSrServer1.status()
 HubServer1status = HubServer1.status()
 AdventureServer1status = AdventureServer1.status()
-print("There are a total of "+ArenasServer1status.players.online + CrSrServer1status.players.online + HubServer1status.players.online + AdventureServer1status.players.online + " players online.")
+print("There are a total of " + ArenasServer1status.players.online + CrSrServer1status.players.online + HubServer1status.players.online + AdventureServer1status.players.online + " players online.")
 
 @client.event
 async def on_ready():
