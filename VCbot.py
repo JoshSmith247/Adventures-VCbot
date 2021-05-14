@@ -2,11 +2,16 @@ import discord
 from mcstatus import MinecraftServer
 
 client = discord.Client()
-server = MinecraftServer.lookup("104.193.183.90:42517")
+ArenasServer1 = MinecraftServer.lookup("104.193.183.98:56157")
+CrSrServer1 = MinecraftServer.lookup("108.62.104.83:33861")
+HubServer1 = MinecraftServer.lookup("192.210.236.66:10156")
+AdventureServer1 = MinecraftServer.lookup("192.210.236.66:13552")
 
-status = server.status()
-latency = server.ping()
-print("The server replied in {0} ms".format(latency))
+ArenasServer1status = ArenasServer1.status()
+CrSrServer1status = CrSrServer1.status()
+HubServer1status = HubServer1.status()
+AdventureServer1status = AdventureServer1.status()
+print("There are a total of "+ArenasServer1status.players.online + CrSrServer1status.players.online + HubServer1status.players.online + AdventureServer1status.players.online + " players online.")
 
 @client.event
 async def on_ready():
