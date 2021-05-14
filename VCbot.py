@@ -1,7 +1,9 @@
 import discord
 from mcstatus import MinecraftServer
+import asyncio
 
 client = discord.Client()
+
 ArenasServer1 = MinecraftServer.lookup("104.193.183.98:56157")
 CrSrServer1 = MinecraftServer.lookup("108.62.104.83:33861")
 HubServer1 = MinecraftServer.lookup("192.210.236.66:10156")
@@ -11,11 +13,32 @@ ArenasServer1status = ArenasServer1.status()
 CrSrServer1status = CrSrServer1.status()
 HubServer1status = HubServer1.status()
 AdventureServer1status = AdventureServer1.status()
-print("There are a total of " + ArenasServer1status.players.online + CrSrServer1status.players.online + HubServer1status.players.online + AdventureServer1status.players.online + " players online.")
+
+playerCount = ArenasServer1status.players.online + CrSrServer1status.players.online + HubServer1status.players.online + AdventureServer1status.players.online
+
+def load_stats():
+    ArenasServer1 = MinecraftServer.lookup("104.193.183.98:56157")
+    CrSrServer1 = MinecraftServer.lookup("108.62.104.83:33861")
+    HubServer1 = MinecraftServer.lookup("192.210.236.66:10156")
+    AdventureServer1 = MinecraftServer.lookup("192.210.236.66:13552")
+
+    ArenasServer1status = ArenasServer1.status()
+    CrSrServer1status = CrSrServer1.status()
+    HubServer1status = HubServer1.status()
+    AdventureServer1status = AdventureServer1.status()
+    
+    global playerCount
+    playerCount = ArenasServer1status.players.online + CrSrServer1status.players.online + HubServer1status.players.online + AdventureServer1status.players.online
+
+stats = False
+countMsg = 0
+
+print("There are a total of " + str(playerCount) + " players online.")
 
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
+    #Note reset stats channel and new stats
 
 @client.event
 async def on_message(message):
@@ -46,6 +69,25 @@ async def on_message(message):
             print('Channels Disabled.')
             await client.change_presence(activity=discord.Game(name="The Server is CLOSED"))
 
+    if message.content.startswith('$newstats'):
+        
+        if message.guild.name == "AiC Minecraft Voice Channels & Hub" and message.channel.name == "server-stats":
+            await message.delete()
+            
+            global stats
+            stats = True
+            
+            await message.channel.send(":bar_chart:  Server Stats  :bar_chart:")
+            await message.channel.send("Player Count: " + str(playerCount))
+            
+            global countMsg
+            countMsg = message.channel.last_message_id
+    
+    if message.content.startswith('$updatestats'):
+        await message.delete()
+        load_stats()
+        await update_stats()
+    
     if message.content.startswith('$help'):
         await message.delete()
         await message.author.send('Commands (All Users):')
@@ -81,5 +123,33 @@ async def on_message(message):
             i += 2
             
         await message.channel.send(embed=embed)
+
+# Updating Stats
+async def update_stats():
+    if stats == True:
+        thisMsg = client.get_channel(842803726296416266)
+        thisMsg = await thisMsg.fetch_message(countMsg)
+        
+        cnt = "Player Count: " + str(playerCount)
+        await thisMsg.edit(content=cnt)
+
+# Updating Stats
+async def periodic():
+    while True:
+        load_stats()
+        await update_stats()
+        await asyncio.sleep(1)
+
+def stopTask():
+    task.cancel()
+
+loop = asyncio.get_event_loop()
+loop.call_later(5, stopTask)
+task = loop.create_task(periodic())
+
+try:
+    loop.run_until_complete(task)
+except asyncio.CancelledError:
+    pass
 
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.1CG3BOzkwO-dexoB2lC0QZk1PmI')
