@@ -53,6 +53,24 @@ async def on_message(message):
         embed.add_field(name="v. 3.4", value="[Link](https://github.com/JoshSmith247/RelicBuild-Bukkit-Plugin/releases/download/3.4/AIC_mc_texture_pack_V3.4.zip)", inline=True)
         embed.add_field(name="v. 3.3", value="[Link](https://github.com/JoshSmith247/RelicBuild-Bukkit-Plugin/releases/download/3.3/AIC_mc_texture_pack_V3.3.zip)", inline=True)
         embed.set_footer(text='Add .zip to .minecraft/resourcepacks folder for installation and select in game menu.')
+        
         await message.author.send(embed=embed)
+    
+    if message.content.startswith('$event'):
+        await message.delete()
+        args = message.content.split('"');
+        
+        embed = discord.Embed(title=args[1], url=args[2], description=args[3], color=discord.Color.blue())
+        embed.set_thumbnail(url=args[4])
+        
+        if len(args) > 5 and args[5] != "null":
+            embed.set_footer(text=args[5]);
+        
+        i = 6
+        while i + 1 < len(args):
+            embed.add_field(name=args[i], value=args[i+1])
+            i += 2
+            
+        await message.channel.send(embed=embed)
 
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.1CG3BOzkwO-dexoB2lC0QZk1PmI')
