@@ -138,18 +138,7 @@ async def periodic():
     while True:
         load_stats()
         await update_stats()
-        await asyncio.sleep(1)
-
-def stopTask():
-    task.cancel()
-
-loop = asyncio.get_event_loop()
-loop.call_later(5, stopTask)
-task = loop.create_task(periodic())
-
-try:
-    loop.run_until_complete(task)
-except asyncio.CancelledError:
-    pass
+        print("UPDATE")
+        await asyncio.sleep(5)
 
 client.run('ODQxNzI2MDk4Mzc0MDAwNjQx.YJq8hA.1CG3BOzkwO-dexoB2lC0QZk1PmI')
